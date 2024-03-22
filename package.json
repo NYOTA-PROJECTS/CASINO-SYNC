@@ -1,0 +1,20 @@
+{
+  "name": "casino-sync",
+  "version": "1.0.0",
+  "description": "API SYNC DB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "sync",
+    "postgesql"
+  ],
+  "author": "Ruben's Alban",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.11.3",
+    "sequelize": "^6.37.1"
+  }
+}
