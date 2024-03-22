@@ -1,0 +1,8 @@
+{
+    "username": "postgres",
+    "password": "Admin@Casino2024",
+    "database": "database_casino_test",
+    "host": "194.163.180.27",
+    "dialect": "postgres",
+    "port": 5432
+}
