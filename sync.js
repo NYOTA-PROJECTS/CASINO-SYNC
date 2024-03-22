@@ -1,9 +1,45 @@
+const winston = require('winston');
+const fs = require('fs');
+const path = require('path');
 const { Sequelize, Op } = require('sequelize');
 const localConfig = require('./config/localConfig.json');
 const onlineConfig = require('./config/onlineConfig.json');
 const models = require('./models');
 
+
+// Créer le dossier logs s'il n'existe pas
+const logsDirectory = path.join(__dirname, 'logs');
+if (!fs.existsSync(logsDirectory)) {
+  fs.mkdirSync(logsDirectory);
+}
+
+// Configurer le logger Winston pour enregistrer les logs dans un fichier
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.File({
+      filename: path.join(logsDirectory, 'synchronisation.log'),
+      level: 'info'
+    })
+  ]
+});
+
+// Fonction pour enregistrer les logs dans le fichier
+const logToFile = (level, message) => {
+  logger.log({
+    level,
+    message
+  });
+};
+
 const syncData = async () => {
+  // Ajouter des logs pour indiquer le début de la synchronisation
+  logToFile('info', 'Début de la synchronisation...');
+
   const localDB = new Sequelize(localConfig);
   const onlineDB = new Sequelize(onlineConfig);
 

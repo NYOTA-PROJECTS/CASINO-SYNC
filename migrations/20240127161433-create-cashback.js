@@ -20,7 +20,7 @@ module.exports = {
         onDelete: 'CASCADE',
       },
       amount: {
-        type: Sequelize.DOUBLE(20, 2),
+        type: Sequelize.DOUBLE,
         allowNull: false,
         defaultValue: 0
       },
@@ -31,7 +31,7 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.fn('now')
       }
     });
   },
